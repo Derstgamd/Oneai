@@ -1,49 +1,93 @@
-html, body, #root {
-  background-color: rgb(15, 15, 15);
-  color: white;
-  width: 100%;
-  height: 100vh;
-  display: flex;
+* {
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 .App {
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #0a0a0a;
+  color: #f0f0f0;
+  font-family: 'DM Sans', sans-serif;
 }
+
+/* ── Panel ── */
 .panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30%;
+  position: relative;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background: #111111;
+  border-right: 1px solid #222;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.panel.open {
+  width: 320px;
+}
+
+.panel.closed {
+  width: 5%;
+  min-width: 48px;
+}
+
+/* ── Toggle button ── */
+.panel-toggle {
+  position: absolute;
+  top: 16px;
+  right: 12px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background: #1a1a1a;
+  color: #f0f0f0;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.2s ease;
 }
+
+.panel-toggle:hover {
+  background: #222;
+  border-color: #444;
+}
+
+.panel-toggle:active {
+  transform: scale(0.95);
+}
+
+/* When closed, center the button in the narrow strip */
+.panel.closed .panel-toggle {
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.panel.closed .panel-toggle:active {
+  transform: translateX(50%) scale(0.95);
+}
+
+/* ── Sidebar content (hidden when closed) ── */
 .panel-content {
-  background-color: black;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-.panel-button{
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-}
-.content {
+  height: 100%;
   width: 100%;
-  transition: margin-left 0.3s ease-in-out;
-  padding: 20px;
-  overflow-y: auto;
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
-.content.with-panel {
-  width: 70%;
-  margin-left: 30%;
+
+.panel.closed .panel-content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Main content ── */
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
 }
