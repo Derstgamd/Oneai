@@ -21,17 +21,17 @@
   background: #111111;
   border-right: 1px solid #222;
   transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
+  display: flex; /* Added flex to help align children */
+  flex-direction: column;
   flex-shrink: 0;
 }
 
 .panel.open {
-  width: 30%;
+  width: 30%; /* Use px for consistency or 30% if you prefer */
 }
 
 .panel.closed {
-  width: 5%;
-  min-width: 48px;
+  width: 5%; /* Slightly wider to accommodate button padding comfortably */
 }
 
 /* ── Toggle button ── */
@@ -50,7 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .panel-toggle:hover {
@@ -58,31 +58,69 @@
   border-color: #444;
 }
 
-.panel-toggle:active {
-  transform: scale(0.95);
-}
-
-/* When closed, center the button in the narrow strip */
+/* Center button when closed */
 .panel.closed .panel-toggle {
   right: 50%;
   transform: translateX(50%);
 }
 
-.panel.closed .panel-toggle:active {
-  transform: translateX(50%) scale(0.95);
-}
-
-/* ── Sidebar content (hidden when closed) ── */
+/* ── Panel content ── */
 .panel-content {
-  height: 100%;
+  flex: 1; /* Automatically takes up available space above footer */
   width: 100%;
-  opacity: 1;
+  overflow-y: auto;
   transition: opacity 0.2s ease;
 }
 
 .panel.closed .panel-content {
   opacity: 0;
   pointer-events: none;
+}
+
+/* ── Panel footer ── */
+.panel-footer {
+  width: 100%;
+  padding: 12px;
+  border-top: 1px solid #222;
+  background: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Removed absolute positioning to prevent overlap issues */
+}
+
+.footer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Better for text alignment */
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background: transparent;
+  color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap; /* Prevents text from wrapping during transition */
+}
+
+.footer-btn:hover {
+  background: #222;
+  border-color: #444;
+}
+
+/* Center icons and hide labels when closed */
+.panel.closed .footer-btn {
+  justify-content: center;
+  padding: 10px 0;
+  border: 1px solid #2a2a2a;
+  background: transparent;
+}
+
+.panel.closed .footer-label {
+  display: none;
 }
 
 /* ── Main content ── */

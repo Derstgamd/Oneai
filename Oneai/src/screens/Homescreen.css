@@ -1,0 +1,133 @@
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.home-header {
+  text-align: center;
+  margin-top: 15vh;
+}
+
+.website-name {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #f0f0f0, #888);
+}
+
+.tagline {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* ── Input Bar ── */
+.input-container {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 8px 12px;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.input-container:focus-within {
+  border-color: #e8ff47;
+}
+
+.input-bar {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+  padding: 10px;
+  outline: none;
+}
+
+.send-btn {
+  background: #e8ff47;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.send-btn:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.send-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: #d4eb3b;
+}
+/* ... keep your existing home-screen and input-container styles ... */
+
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+  gap: 12px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.suggestion-card {
+  background: #151515;
+  border: 1px solid #2a2a2a;
+  padding: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.suggestion-card:hover {
+  background: #1c1c1c;
+  border-color: #444;
+  transform: translateY(-2px);
+}
+
+.suggestion-icon {
+  color: #e8ff47; /* Your accent color */
+}
+
+.suggestion-text {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+/* Responsiveness: Stack cards on small screens */
+@media (max-width: 600px) {
+  .suggestions-grid {
+    grid-template-columns: 1fr;
+  }
+}

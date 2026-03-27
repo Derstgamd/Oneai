@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './App.css'
 import Sidebar from './screens/Sidebar.jsx'
+import Homescreen from './screens/Homescreen.jsx'
+// Import clean icons from lucide-react
+import { ChevronLeft, Menu, User, Settings } from 'lucide-react'
 
 function App() {
   const [panelOpen, setPanelOpen] = useState(true)
@@ -13,29 +16,32 @@ function App() {
           onClick={() => setPanelOpen(!panelOpen)}
           aria-label={panelOpen ? 'Close panel' : 'Open panel'}
         >
-          {panelOpen ? (
-            /* Chevron left — close */
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          ) : (
-            /* Hamburger — open */
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          )}
+          {/* Conditionally render icons based on state */}
+          {panelOpen ? <ChevronLeft size={20} /> : <Menu size={20} />}
         </button>
 
         <div className="panel-content">
           <Sidebar />
         </div>
+
+        {/* Footer: Only renders if the panel is CLOSED */}
+        {!panelOpen && (
+          <div className="panel-footer">
+            <button className="footer-btn" title="User Profile" aria-label="User Profile">
+              <User size={20} />
+              <span className="footer-label">Profile</span>
+            </button>
+            <button className="footer-btn" title="Settings" aria-label="Settings">
+              <Settings size={20} />
+              <span className="footer-label">Settings</span>
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="content">
         <h1>OneAI</h1>
-        <p>OneAI is a powerful AI platform that provides a wide range of AI services and tools to help businesses and developers build intelligent applications.</p>
+        <Homescreen />
       </div>
     </div>
   )
