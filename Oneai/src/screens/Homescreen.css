@@ -22,8 +22,9 @@
 }
 
 .tagline {
-  color: #888;
-  font-size: 1.1rem;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 .main-content {
@@ -47,7 +48,7 @@
 }
 
 .input-container:focus-within {
-  border-color: #e8ff47;
+  border-color: #444;
 }
 
 .input-bar {
@@ -116,7 +117,7 @@
 }
 
 .suggestion-icon {
-  color: #e8ff47; /* Your accent color */
+  color: white; /* Your accent color */
 }
 
 .suggestion-text {
